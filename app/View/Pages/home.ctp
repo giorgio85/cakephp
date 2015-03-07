@@ -24,13 +24,13 @@ App::uses('Debugger', 'Utility');
             </a></li>
             <li><a href="#">
                 <img src="img/1.png" class="ui-li-thumb">
-                <h2>Sube tus creaciones</h2>
+                <h2>Comparte tus creaciones</h2>
                 <p>Comparte con nosotros tus mejores tartas</p>
                 <p class="ui-li-aside">COMPARTE</p>
             </a></li>
             <li><a href="#">
                 <img src="img/1.png" class="ui-li-thumb">
-                <h2>Vuestras creaciones</h2>
+                <h2>Vuestras fabulosas tartas</h2>
                 <p>Comenta las creaciones de los demás</p>
                 <p class="ui-li-aside">COMENTA</p>
             </a></li>
