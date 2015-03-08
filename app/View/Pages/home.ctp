@@ -17,13 +17,13 @@ App::uses('Debugger', 'Utility');
     <div role="main" class="ui-content">
         <ul data-role="listview" data-inset="true">
             <li><a href="#">
-                <img src="img/1.png" class="ui-li-thumb">
+                <img src="img/recipe.jpg" class="ui-li-thumb">
                 <h2>Crea tus propias tartas</h2>
                 <p>Utilizando nuestro creador de recetas</p>
                 <p class="ui-li-aside">CREA</p>
             </a></li>
             <li><a href="#">
-                <img src="img/1.png" class="ui-li-thumb">
+                <img src="img/tchoco.jpg" class="ui-li-thumb">
                 <h2>Comparte tus creaciones</h2>
                 <p>Comparte con nosotros tus mejores tartas</p>
                 <p class="ui-li-aside">COMPARTE</p>
