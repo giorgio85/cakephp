@@ -21,7 +21,7 @@ App::uses('Debugger', 'Utility');
         <ul data-role="listview" data-inset="true">
             <?php foreach ($bases as $base): ?>
                 <li>
-                    <a href="/cakephp/fillings" onclick="storeData ('baseid', '<?php echo $base['CakeBase']['baseid']; ?>')">                   
+                    <a href="/cakephp/fillings" onclick="storeData ('baseid', '<?php echo $base['CakeBase']['baseid']; ?>')">                        
                         <img src="<?php echo $base['CakeBase']['image']; ?>" class="ui-li-thumb"> 
                         <h2><?php echo $base['CakeBase']['name']; ?></h2>
                         <p><?php echo $base['CakeBase']['description']; ?></p>
