@@ -20,7 +20,7 @@ App::uses('Debugger', 'Utility');
     <div role="main" class="ui-content">
         <ul data-role="listview" data-inset="true">
             <li>
-                <a href="cakebases">
+                <a href="cakebases/select">
                 <img src="img/recipe.jpg" class="ui-li-thumb">
                 <h2>Crea tus propias tartas</h2>
                 <p>Utilizando nuestro creador de recetas</p>

@@ -6,5 +6,5 @@
 }
 /* Fallback */
 .ui-nosvg .ui-icon-adduser:after {
-	background-image: url("images/icons-png/add-user-white.png");
+	background-image:url(images/icons-png/add-user-white.png);
 }
