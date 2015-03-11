@@ -4,7 +4,7 @@
  * @package       app.View.Pages
  * @since         CakePHP(tm) v 0.10.0.1076
  */
-
+echo $this->Html->css('recetas');
 if (!Configure::read('debug')):
 	throw new NotFoundException();
 endif;
