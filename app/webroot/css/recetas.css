@@ -12,6 +12,7 @@
 .forkd.recipe DIV.description {
     margin: 1em 0;
     font-weight: bold;
+    font-style: italic;
     font-size: 120%;
     }
 .forkd.recipe DIV.subheading {

@@ -22,8 +22,9 @@ App::uses('Debugger', 'Utility');
     <div class="ui-block-c"><a href="#" class="ui-btn ui-shadow ui-corner-all">Cobertura</a></div>
 </div>
 <?php
-    echo "<h2>Receta de ".$base['CakeBase']['name']." con ";
+    echo "<h3><center>Receta de ".$base['CakeBase']['name']." con ";
     echo $filling['Filling']['name']." y ";
-    echo $coating['Coating']['name']."</h2>";
+    echo $coating['Coating']['name']."</h3></center>";
     echo $base['CakeBase']['recipe'];
+    echo $filling['Filling']['recipe'];
 ?>
