@@ -27,4 +27,5 @@ App::uses('Debugger', 'Utility');
     echo $coating['Coating']['name']."</h3></center>";
     echo $base['CakeBase']['recipe'];
     echo $filling['Filling']['recipe'];
+    echo $coating['Coating']['recipe'];
 ?>
