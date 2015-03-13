@@ -10,6 +10,6 @@ class ImagesController extends AppController {
     public $helpers = ['Html', 'Form'];
     
     public function index(){
-        $this->set('images',$this->Image->find('all'));
+     //   $this->set('images',$this->Image->find('all'));
     }
 }
