@@ -1,7 +1,7 @@
 <?php 
 header('Content-Type: text/cache-manifest');
   echo "CACHE MANIFEST\n";
-
+  echo "CACHE:\n"; 
   $hashes = "";
 
   $dir = new RecursiveDirectoryIterator(".");
@@ -14,4 +14,6 @@ header('Content-Type: text/cache-manifest');
       $hashes .= md5_file($file);
     }
   }
-  echo "# Hash: " . md5($hashes) . "\n";
+  echo "#  Hash: " . md5($hashes) . "\n";
+  echo "\nNETWORK:\n";
+  echo "*\n";
