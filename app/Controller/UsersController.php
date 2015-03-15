@@ -6,6 +6,8 @@
  * and open the template in the editor.
  */
 
+App::import('Controller', 'Posts');
+App::import('Controller', 'Orders');
 class UsersController extends AppController {
     public $helpers = ['Html', 'Form'];
     
@@ -55,7 +57,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('Usuario actualizado'));
                 return $this->redirect(array('action'=>'index'));
             }
-            $this->Session->setFlash(__('No se ha podido crear el usuario'));
+            $this->Session->setFlash(__('No se ha podido editar el usuario'));
         }else {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
@@ -107,5 +109,17 @@ class UsersController extends AppController {
     
     public function profile(){
         
+    }
+    
+    public function orders(){
+        $Orders = new OrdersController();
+        $conditions = ['Order.userid' => $this->Auth->user('id')];
+        $this->set('orders', $Orders->Order->find('all', ['conditions' => $conditions]));
+    }
+    
+    public function posts(){
+        $Posts = new PostsController();
+        $conditions = ['Post.userid' => $this->Auth->user('id')];
+        $this->set('posts', $Posts->Post->find('all', ['conditions' => $conditions]));
     }
 }

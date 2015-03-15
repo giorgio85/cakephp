@@ -15,8 +15,7 @@ class Post extends AppModel {
             'rule' => 'notEmpty'
         ),
         'imageurl' => array(
-            'rule' => 'notEmpty',
-            'message'=>'Subir una imágen'
+            'rule' => 'notEmpty'
         )
     );
 
