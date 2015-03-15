@@ -23,7 +23,7 @@ class PostsController extends AppController {
     
     public function upload(){
         if (!$this->Auth->user()){
-            return $this->redirect(['controller' => 'users', 'action' => 'login']);
+           return $this->redirect(['controller' => 'users', 'action' => 'login','data-rel'=>'dialog']);
         }
            
         $filename = "";
@@ -39,7 +39,7 @@ class PostsController extends AppController {
                     $this->Session->setFlash('Sólo puedes subir imágenes.');
                     $this->render();
                 } else {
-                    $date = date("YmdHis");;
+                    $date = date("YmdHis");
                     $filename = $date."u".$this->Auth->user('id').".".$ext;
 
                     $data = $file->read();

@@ -1,6 +1,9 @@
 <div id="demo-page" class="my-page">
     <div role="main" class="ui-content">
-        <ul data-role="listview" data-inset="true">
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+        <ul data-role="listview" data-inset="true" data-filter="true" data-input="#myFilter">
             <?php foreach ($posts as $post): ?>
                 <li>
                     <a href="#<?php echo $post['Post']['id']; ?>">
@@ -12,5 +15,5 @@
             <?php endforeach; ?>
             <?php unset($post) ?>
         </ul>
-    </div><!-- /content -->
+   </div><!-- /content -->
 </div>
