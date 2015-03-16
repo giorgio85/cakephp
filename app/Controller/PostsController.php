@@ -6,6 +6,10 @@
  * and open the template in the editor.
  */
 //App::uses('MagickConvertHelper', 'View');
+require 'Cloudinary/src/Cloudinary.php';
+require 'Cloudinary/src/Uploader.php';
+require 'Cloudinary/src/Api.php';
+
 class PostsController extends AppController {
 
     public $helpers = ['Html', 'Form'];
@@ -88,11 +92,11 @@ class PostsController extends AppController {
                 }*/
             }
             //Fin subir imagenes
-
+            \Cloudinary\Uploader::upload('img/uploads/' . $filename .".". $ext);
             $this->request->data['Post']['imageurl'] = $filename.".". $ext;
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
-                $this->Session->setFlash('Se ha subido la imagen');
+                $this->Session->setFlash(__('Se ha subido la imagen correctamente'), 'default', array('class' => 'flash_success'));
                 $this->redirect(['controller' => 'users', 'action' => 'profile']);
             }
         }

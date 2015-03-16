@@ -5,9 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 App::import('Controller', 'Posts');
 App::import('Controller', 'Orders');
+App::import('Controller', 'CakeBases');
+App::import('Controller', 'Fillings');
+App::import('Controller', 'Coatings');
 
 class UsersController extends AppController {
 
@@ -19,9 +21,9 @@ class UsersController extends AppController {
     }
 
     public function index() {
-        //comprobar perfil
-        //$this->User->recursive = 0;
-        //$this->set('users', $this->paginate());
+//comprobar perfil
+//$this->User->recursive = 0;
+//$this->set('users', $this->paginate());
         $this->paginate = array(
             'limit' => 6,
             'order' => array('User.username' => 'asc')
@@ -42,10 +44,10 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Usuario creado'));
+                $this->Session->setFlash(__('Usuario creado'), 'default', array('class' => 'flash_success'));
                 return $this->redirect(array('action' => 'index')); //<- probablemente mal
             }
-            $this->Session->setFlash(__('No se ha podido crear el usuario'));
+            $this->Session->setFlash(__('No se ha podido crear el usuario'), 'default', array('class' => 'flash_error'));
         }
     }
 
@@ -56,10 +58,10 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Usuario actualizado'));
+                $this->Session->setFlash(__('Usuario actualizado'), 'default', array('class' => 'flash_success'));
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(__('No se ha podido editar el usuario'));
+            $this->Session->setFlash(__('No se ha podido editar el usuario'), 'default', array('class' => 'flash_error'));
         } else {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
@@ -68,16 +70,15 @@ class UsersController extends AppController {
 
     public function delete($id = null) {
         $this->request->allowMethod('post');
-
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Usuario incorrecto'));
         }
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('Usuario eliminado'));
+            $this->Session->setFlash(__('Usuario eliminado'), 'default', array('class' => 'flash_success'));
             return $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('Usuario no eliminado'));
+        $this->Session->setFlash(__('No se ha podido eliminar el usuario'), 'default', array('class' => 'flash_error'));
         return $this->redirect(array('action' => 'index'));
     }
 
@@ -87,10 +88,10 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                $this->Session->setFlash(__('Bienvenido, ' . $this->Auth->user('username')));
+                $this->Session->setFlash(__('Bienvenido, ' . $this->Auth->user('username')), 'default', ['class' => 'flash_info']);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Session->setFlash(__('Usuario y/o contraseña incorrectos'));
+            $this->Session->setFlash(__('Usuario y/o contraseña incorrectos'), 'default', array('class' => 'flash_error'));
         }
     }
 
@@ -102,10 +103,10 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('Usuario creado'));
+                $this->Session->setFlash(__('Te has registrado correctamente'), 'default', array('class' => 'flash_success'));
                 return $this->redirect(['action' => 'login']);
             }
-            $this->Session->setFlash(__('No se ha podido crear el usuario'));
+            $this->Session->setFlash(__('Hubo un error durante el registro'), 'default', array('class' => 'flash_error'));
         }
     }
 
@@ -115,78 +116,60 @@ class UsersController extends AppController {
         }
         $filename = "";
         $this->set('userid', $this->Auth->user('id'));
+        $conditions = ['id' => $this->Auth->user('id')];
+        $this->set('users', $this->User->find('all', ['conditions' => $conditions]));
         if ($this->request->is('post')) {
-            //Check if image has been uploaded
+//Check if image has been uploaded
             if ($this->data['User']['avatar']) {
-                /* $file = new File($this->request->data['Post']['imageurl']['tmp_name'], true, 0644);
-                  $path_parts = pathinfo($this->data['Post']['imageurl']['name']);
-                  $ext = $path_parts['extension'];
-                  if ($ext != 'jpg' && $ext != 'jpeg' && $ext != 'JPG' && $ext != 'gif' && $ext != 'png') {
-                  $this->Session->setFlash('Sólo puedes subir imágenes.');
-                  $this->render();
-                  } else {
-                  $date = date("YmdHis");
-                  ;
-                  $filename = $date . "u" . $this->Auth->user('id') . "." . $ext;
-
-                  $data = $file->read();
-                  $file->close();
-
-                  $file = new File(WWW_ROOT . 'img/uploads/' . $filename, true);
-                  $file->write($data);
-                  $file->close();
-                  } */
                 require_once ('ImageManipulator.php');
-                //require_once ('_image.php');
+//require_once ('_image.php');
                 $date = date("YmdHis");
                 $filename = $date . "u" . $this->Auth->user('id');
                 $path_parts = pathinfo($this->data['User']['avatar']['name']);
                 $ext = $path_parts['extension'];
                 $manipulator = new ImageManipulator($this->request->data['User']['avatar']['tmp_name']);
-                $newImage = $manipulator->resample(500, 500);
-                $manipulator->save('img/profile/' . $filename . "full." . $ext);
+                $newImage = $manipulator->resample(150, 150);
+//$manipulator->save('img/profile/' . $filename . "full." . $ext); innecesario tener el avatar full
                 $width = $manipulator->getWidth();
                 $height = $manipulator->getHeight();
                 $centreX = round($width / 2);
                 $centreY = round($height / 2);
-                $x1 = $centreX - 250;
-                $y1 = $centreY - 250;
-
-                $x2 = $centreX + 250;
-                $y2 = $centreY + 250;
-
+                $x1 = $centreX - 75;
+                $y1 = $centreY - 75;
+                $x2 = $centreX + 75;
+                $y2 = $centreY + 75;
                 $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
                 $manipulator->save('img/profile/' . $filename . "." . $ext);
-                /* $myImage = new _image;
-                  $myImage->uploadTo = 'img/uploads/';
-                  $myImage->newName = $filename;
-                  $myImage->returnType = 'array';
-                  $myImage->duplicates = 'o';
-                  $filename = $filename.".".$ext;
-                  $img = $myImage->upload($this->request->data['Post']['imageurl'], true, 0644);
-                  if ($img){
-                  $myImage->source_file = $img['path'].$img['image'];
-                  $myImage->newHeight = 500;
-                  $myImage->newWidth = 500;
-                  $myImage->resize();
-                  //$myImage->crop(500,500,0,0);
-                  } */
             }
-            //Fin subir imagenes
+//Fin subir imagenes
             $this->User->id = $this->Auth->user('id');
-            $this->request->data['User']['avatar'] = $filename.".". $ext;
-            if ($this->User->set($this->request->data['User']['avatar'])) {
-                $this->User->save();
-                $this->Session->setFlash('Se ha subido la imagen');
-                $this->redirect(['controller' => 'users', 'action' => 'profile']);
-           }
+            $this->request->data['User']['avatar'] = $filename . "." . $ext;
+            if ($this->request->is('post') || $this->request->is('put')) {
+                if ($this->User->saveField('avatar', $filename . "." . $ext)) {
+                    $this->Session->setFlash(__('Usuario actualizado'), 'default', array('class' => 'flash_success'));
+                    $this->redirect(['controller' => 'users', 'action' => 'profile']);
+                }
+                $this->Session->setFlash(__('No se ha podido editar el usuario'), 'default', array('class' => 'flash_error'));
+            }
         }
     }
 
     public function orders() {
         $Orders = new OrdersController();
+        $cakebases = new CakeBasesController();
+        $fillings = new FillingsController();
+        $coatings = new CoatingsController();
         $conditions = ['Order.userid' => $this->Auth->user('id')];
-        $this->set('orders', $Orders->Order->find('all', ['conditions' => $conditions]));
+        $i = 0;
+        foreach ($Orders->Order->find('all', ['conditions' => $conditions]) as $order) {
+//$this->Session->setFlash(__($order['Order']['cakebaseid']), 'default', ['class' => 'flash_warning']);
+            $orderlist[$i]['Orders'] = $order;
+            $orderlist[$i]['CakeBases'] = $cakebases->CakeBase->findById($order['Order']['cakebaseid']);
+            $orderlist[$i]['Fillings'] = $fillings->Filling->findById($order['Order']['fillingid']);
+            $orderlist[$i]['Coatings'] = $coatings->Coating->findById($order['Order']['coatingid']);
+            $i++;
+        }
+        $this->set('orders', $orderlist);
     }
 
     public function posts() {

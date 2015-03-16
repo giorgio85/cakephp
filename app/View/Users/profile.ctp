@@ -1,7 +1,9 @@
 <?php 
 
- $this->assign('title','Perfil de usuario');?>
-<img style="border:1px gray solid;float:left;" src="/cakephp/img/profile/<?php echo $this->Session->read('Auth.User.avatar'); ?>"/>
+$this->assign('title','Perfil de usuario');
+foreach ($users as $user):
+?>
+<img style="border:1px gray solid;float:left;" src="/cakephp/img/profile/<?php echo $user['User']['avatar']; ?>"/>
 <div style='float:left;'>
 <b>Nombre de usuario: </b><?php echo $this->Session->read('Auth.User.username') ?><br>
 <b>Email: </b><?php echo $this->Session->read('Auth.User.email') ?><br>
@@ -14,5 +16,6 @@
  echo $this->Form->input('userid', ['type' => 'hidden', 'value' => $userid]);
 echo $this->Form->end('Subir imagen');?>
  </fieldset>
-
-<!--//echo "<b>Último acceso: </b>".$this->Session->read('Auth.User.modified');-->
+<?php
+endforeach;
+?>
