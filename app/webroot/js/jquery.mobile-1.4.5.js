@@ -15450,5 +15450,4 @@ $.widget( "ui.tabs", {
 	});
 }( jQuery, this ));
 
-
 }));

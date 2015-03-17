@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 App::import('Controller', 'Posts');
 App::import('Controller', 'Orders');
 App::import('Controller', 'CakeBases');
@@ -21,9 +22,9 @@ class UsersController extends AppController {
     }
 
     public function index() {
-//comprobar perfil
-//$this->User->recursive = 0;
-//$this->set('users', $this->paginate());
+        //comprobar perfil
+        //$this->User->recursive = 0;
+        //$this->set('users', $this->paginate());
         $this->paginate = array(
             'limit' => 6,
             'order' => array('User.username' => 'asc')
@@ -70,6 +71,7 @@ class UsersController extends AppController {
 
     public function delete($id = null) {
         $this->request->allowMethod('post');
+
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Usuario incorrecto'));
@@ -82,14 +84,17 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-    public function login() {
+    public function login($arg1 = null, $arg2 = null, $arg3 = null) {
         if ($this->Session->check('Auth.User')) {
             $this->redirect(array('action' => 'profile'));
         }
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->setFlash(__('Bienvenido, ' . $this->Auth->user('username')), 'default', ['class' => 'flash_info']);
-                return $this->redirect($this->Auth->redirectUrl());
+                if (isset($arg1)){
+                    $arg3 =  str_replace(',', '/', $arg3);
+                    return $this->redirect(['controller' => $arg1, 'action' => $arg2.'/'.$arg3]);
+                }else return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Session->setFlash(__('Usuario y/o contraseña incorrectos'), 'default', array('class' => 'flash_error'));
         }
@@ -119,17 +124,18 @@ class UsersController extends AppController {
         $conditions = ['id' => $this->Auth->user('id')];
         $this->set('users', $this->User->find('all', ['conditions' => $conditions]));
         if ($this->request->is('post')) {
-//Check if image has been uploaded
+            //Check if image has been uploaded
             if ($this->data['User']['avatar']) {
+
                 require_once ('ImageManipulator.php');
-//require_once ('_image.php');
+                //require_once ('_image.php');
                 $date = date("YmdHis");
                 $filename = $date . "u" . $this->Auth->user('id');
                 $path_parts = pathinfo($this->data['User']['avatar']['name']);
                 $ext = $path_parts['extension'];
                 $manipulator = new ImageManipulator($this->request->data['User']['avatar']['tmp_name']);
                 $newImage = $manipulator->resample(150, 150);
-//$manipulator->save('img/profile/' . $filename . "full." . $ext); innecesario tener el avatar full
+                //$manipulator->save('img/profile/' . $filename . "full." . $ext); innecesario tener el avatar full
                 $width = $manipulator->getWidth();
                 $height = $manipulator->getHeight();
                 $centreX = round($width / 2);
@@ -141,7 +147,7 @@ class UsersController extends AppController {
                 $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
                 $manipulator->save('img/profile/' . $filename . "." . $ext);
             }
-//Fin subir imagenes
+            //Fin subir imagenes
             $this->User->id = $this->Auth->user('id');
             $this->request->data['User']['avatar'] = $filename . "." . $ext;
             if ($this->request->is('post') || $this->request->is('put')) {
@@ -162,14 +168,16 @@ class UsersController extends AppController {
         $conditions = ['Order.userid' => $this->Auth->user('id')];
         $i = 0;
         foreach ($Orders->Order->find('all', ['conditions' => $conditions]) as $order) {
-//$this->Session->setFlash(__($order['Order']['cakebaseid']), 'default', ['class' => 'flash_warning']);
+            //$this->Session->setFlash(__($order['Order']['cakebaseid']), 'default', ['class' => 'flash_warning']);
             $orderlist[$i]['Orders'] = $order;
             $orderlist[$i]['CakeBases'] = $cakebases->CakeBase->findById($order['Order']['cakebaseid']);
             $orderlist[$i]['Fillings'] = $fillings->Filling->findById($order['Order']['fillingid']);
             $orderlist[$i]['Coatings'] = $coatings->Coating->findById($order['Order']['coatingid']);
             $i++;
         }
-        $this->set('orders', $orderlist);
+        if (isset($orderlist)){
+            $this->set('orders', $orderlist);
+        }
     }
 
     public function posts() {

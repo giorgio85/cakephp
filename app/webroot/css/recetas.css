@@ -48,6 +48,7 @@
 .forkd.recipe DL DT {
     display: inline;
     font-weight: bold;
+    font-size: 125%;
     }
 .forkd.recipe DL DD {
     display: inline;
