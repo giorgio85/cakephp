@@ -16,7 +16,7 @@
 $title = __d('cake_dev', 'CakeRecipe');
 ?>
 <!DOCTYPE html>
-<?php echo "<html manifest='" . $this->webroot . "manifest.php'>"; ?>
+<?php echo "<html manifest='". $this->webroot . "manifest.appcache'>"; ?>
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <?php echo $this->Html->charset(); ?>
@@ -87,12 +87,13 @@ $title = __d('cake_dev', 'CakeRecipe');
         </div>
         <div data-role="panel" id="left-panel" data-theme="a">   
             <div class="forkd recipe" align="center">
-                <div align="center"><h3>¡Bienvenidos<br>a<br>CakeMakers!</h3></div>
                 <div>
+                <div align="center"><h3>¡Bienvenidos<br>a<br>CakeMakers!</h3></div>               
                     <div><strong>Entre a formar parte de nuestra familia</strong></div>
                     <p>Esta aplicación está pensada para los amantes de las tartas.</p>
                     <p>Disponemos de un <i>creador</i> de recetas que dará vida a la tarta que usted desea.<br>
                     Seleccione su base, relleno y cobertura y siga la receta que crearemos para usted!.</p>
+                   <img src="img/logo.png" alt="logo" style="width:100%"/>
                     <p>Nuestra pastelera profesional nos ha proporcionado sus mejores recetas para que usted cree su tarta facilmente.</p>
                     <p>Además puede registrarse y <i>subir sus proprias creaciones</i>, ver las creaciones de los demás y comentarlas.<br>
                         De esta manera formará parte de nuestra comunidad de <strong>¡CakeMakers!</strong></p>
