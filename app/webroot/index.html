@@ -1,43 +1,89 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html manifest='/cakephp/manifest.php'><head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	<title>
 		CakeRecipe:
-		Errors	</title>
+		Página principal	</title>
 	<link href="/cakephp/favicon.ico" type="image/x-icon" rel="icon" /><link href="/cakephp/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-	<link rel="stylesheet" type="text/css" href="css/Daw2.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" type="text/css" href="/cakephp/css/Daw2.min.css" />
+	<link rel="stylesheet" type="text/css" href="/cakephp/css/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" type="text/css" href="/cakephp/css/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" type="text/css" href="/cakephp/css/listview-grid.css" />
 
-	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-
+	<script type="text/javascript" src="/cakephp/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/cakephp/js/jqm_config.js"></script>
+	<script type="text/javascript" src="/cakephp/js/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src="/cakephp/js/cakerecipe.js"></script>
 </head>
 <body>
     <div data-role="page" data-theme="a">
-		<div data-role="header" data-position="inline">
-			<h1>It Worked!</h1>
-		</div>
-		<div data-role="content" data-theme="a">
-			<p>Your theme was successfully downloaded. You can use this page as a reference for how to link it up!</p>
-			<pre>
-<strong>&lt;link rel=&quot;stylesheet&quot; href=&quot;themes/Daw2.min.css&quot; /&gt;</strong>
-<strong>&lt;link rel=&quot;stylesheet&quot; href=&quot;themes/jquery.mobile.icons.min.css&quot; /&gt;</strong>
-&lt;link rel=&quot;stylesheet&quot; href=&quot;http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css&quot; /&gt;
-&lt;script src=&quot;http://code.jquery.com/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js&quot;&gt;&lt;/script&gt;
-			</pre>
-			<p>This is content color swatch "A" and a preview of a <a href="#" class="ui-link">link</a>.</p>
-			<label for="slider1">Input slider:</label>
-			<input type="range" name="slider1" id="slider1" value="50" min="0" max="100" data-theme="a" />
-			<fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
-			<legend>Cache settings:</legend>
-			<input type="radio" name="radio-choice-a1" id="radio-choice-a1" value="on" checked="checked" />
-			<label for="radio-choice-a1">On</label>
-			<input type="radio" name="radio-choice-a1" id="radio-choice-b1" value="off"  />
-			<label for="radio-choice-b1">Off</label>
-			</fieldset>
-		</div>
-	</div>
+        <div data-role="header" data-position="fixed">
+            <h1>Página principal</h1>
+            <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
+                <!--a href="#" data-role="button" data-icon="user" data-iconpos="notext">Login</a-->
+                                                    <a href="/cakephp/users/profile" data-role="button" data-icon="user" data-iconpos="notext">Login</a>                                                    <a href="/cakephp/users/logout" data-role="button" data-icon="action" data-iconpos="notext">Login</a>                                                            </div>
+            <div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
+                <!--a href="#" data-role="button" data-icon="info" data-iconpos="notext">Info</a-->
+                <a href="/cakephp/pages/#left-panel" data-role="button" data-icon="info" data-iconpos="notext">Login</a>                            </div>
+                <!--a data-rel="back" class="ui-btn ui-btn-left ui-corner-all ui-btn-icon-left ui-icon-info ui-btn-icon-notext">Información</a-->
+        </div>
+        <div data-role="panel" id="left-panel" data-theme="a">
+            <div class="forkd recipe" align="center">
+                <div align="center"><h3>¡Bienvenidos<br>a<br>CakeMakers!</h3></div>
+                <div>
+                    <div><strong>Entre a formar parte de nuestra familia</strong></div>
+                    <p>Esta aplicación está pensada para los amantes de las tartas.</p>
+                    <p>Disponemos de un <i>creador</i> de recetas que dará vida a la tarta que usted desea.<br>
+                        Seleccione su base, relleno y cobertura y siga la receta que crearemos para usted!.</p>
+                    <img src="/cakephp/img/logo.png" alt="Logo" title="Logo" style="width:100%">
+                    <p>Nuestra pastelera profesional nos ha proporcionado sus mejores recetas para que usted cree su tarta facilmente.</p>
+                    <p>Además puede registrarse y <i>subir sus proprias creaciones</i>, ver las creaciones de los demás y comentarlas.<br>
+                        De esta manera formará parte de nuestra comunidad de <strong>¡CakeMakers!</strong></p>
+                </div>
+            </div>
+            <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-left ui-btn-icon-notext">Close</a>
+        </div><!-- /panel -->
+        <div data-role="panel" id="right-panel" data-theme="a" data-position="right" data-display="overlay">
+            <div class="forkd recipe" align="center">
+                <div><br>
+                    <ul data-role="listview">
+                        <li data-icon="home"><a data-ajax="false" href="http://localhost/cakephp/">Principal</a></li>
+                                                <li data-icon="user"><a href="/cakephp/users/profile">Perfil</a></li>
+                                                <li><a id="selectcakem" href="/cakephp/cakebases/select/0/0/0">Crear</a></li>
+                        <li><a href="/cakephp/posts/upload">Compartir</a></li>
+                        <li><a href="/cakephp/posts/browse">Comentar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-right ui-btn-icon-notext">Close</a>
+        </div><!-- /panel -->
+        <div class="ui-content" role="main">
+                        <div id="demo-page" class="my-page">
+    <div role="main" class="ui-content">
+        <ul data-role="listview" data-inset="true">
+            <li>
+                <a id="selectcake" href="cakebases/select/0/0/0" data-ajax="false">
+                <img src="/cakephp/img/recipe.jpg" class="ui-li-thumb">
+                <h2>Crea tus propias tartas</h2>
+                <p>Utilizando nuestro creador de recetas</p>
+                <p class="ui-li-aside">CREA</p>
+            </a></li>
+            <li><a href="posts/upload" data-ajax="false">
+                <img src="/cakephp/img/tchoco.jpg" class="ui-li-thumb">
+                <h2>Sube tus creaciones</h2>
+                <p>Comparte con nosotros tus mejores tartas</p>
+                <p class="ui-li-aside">COMPARTE</p>
+            </a></li>
+            <li><a href="posts/browse" data-ajax="false">
+                <img src="/cakephp/img/comenta.jpg" class="ui-li-thumb">
+                <h2>Vuestras creaciones</h2>
+                <p>Comenta las creaciones de los demás</p>
+                <p class="ui-li-aside">COMENTA</p>
+            </a></li>
+            
+        </ul>
+    </div><!-- /content -->
+</div>        </div>
+            </div>
 </body>
 </html>

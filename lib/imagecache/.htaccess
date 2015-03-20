@@ -16,4 +16,3 @@ RewriteRule . index.php [L]
 Order Deny,Allow
 Deny from All
 </Files>
-AddType text/cache-manifest manifest
