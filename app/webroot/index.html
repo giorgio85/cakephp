@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html manifest='/cakephp/manifest.php'><head>
+<html manifest='manifest.php'><head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	<title>
 		CakeRecipe:
 		Página principal	</title>
-	<link href="/cakephp/favicon.ico" type="image/x-icon" rel="icon" /><link href="/cakephp/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-	<link rel="stylesheet" type="text/css" href="/cakephp/css/Daw2.min.css" />
-	<link rel="stylesheet" type="text/css" href="/cakephp/css/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" type="text/css" href="/cakephp/css/jquery.mobile.structure-1.4.5.min.css" />
-	<link rel="stylesheet" type="text/css" href="/cakephp/css/listview-grid.css" />
+	<link href="favicon.ico" type="image/x-icon" rel="icon" /><link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
+	<link rel="stylesheet" type="text/css" href="css/Daw2.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/listview-grid.css" />
 
-	<script type="text/javascript" src="/cakephp/js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="/cakephp/js/jqm_config.js"></script>
-	<script type="text/javascript" src="/cakephp/js/jquery.mobile-1.4.5.js"></script>
-	<script type="text/javascript" src="/cakephp/js/cakerecipe.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/jqm_config.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src="js/cakerecipe.js"></script>
 </head>
 <body>
     <div data-role="page" data-theme="a">
@@ -21,10 +21,10 @@
             <h1>Página principal</h1>
             <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal">
                 <!--a href="#" data-role="button" data-icon="user" data-iconpos="notext">Login</a-->
-                                                    <a href="/cakephp/users/profile" data-role="button" data-icon="user" data-iconpos="notext">Login</a>                                                    <a href="/cakephp/users/logout" data-role="button" data-icon="action" data-iconpos="notext">Login</a>                                                            </div>
+                                                    <a href="users/profile" data-role="button" data-icon="user" data-iconpos="notext">Login</a>                                                    <a href="users/logout" data-role="button" data-icon="action" data-iconpos="notext">Login</a>                                                            </div>
             <div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
                 <!--a href="#" data-role="button" data-icon="info" data-iconpos="notext">Info</a-->
-                <a href="/cakephp/pages/#left-panel" data-role="button" data-icon="info" data-iconpos="notext">Login</a>                            </div>
+                <a href="pages/#left-panel" data-role="button" data-icon="info" data-iconpos="notext">Login</a>                            </div>
                 <!--a data-rel="back" class="ui-btn ui-btn-left ui-corner-all ui-btn-icon-left ui-icon-info ui-btn-icon-notext">Información</a-->
         </div>
         <div data-role="panel" id="left-panel" data-theme="a">
@@ -35,7 +35,7 @@
                     <p>Esta aplicación está pensada para los amantes de las tartas.</p>
                     <p>Disponemos de un <i>creador</i> de recetas que dará vida a la tarta que usted desea.<br>
                         Seleccione su base, relleno y cobertura y siga la receta que crearemos para usted!.</p>
-                    <img src="/cakephp/img/logo.png" alt="Logo" title="Logo" style="width:100%">
+                    <img src="img/logo.png" alt="Logo" title="Logo" style="width:100%">
                     <p>Nuestra pastelera profesional nos ha proporcionado sus mejores recetas para que usted cree su tarta facilmente.</p>
                     <p>Además puede registrarse y <i>subir sus proprias creaciones</i>, ver las creaciones de los demás y comentarlas.<br>
                         De esta manera formará parte de nuestra comunidad de <strong>¡CakeMakers!</strong></p>
@@ -47,11 +47,11 @@
             <div class="forkd recipe" align="center">
                 <div><br>
                     <ul data-role="listview">
-                        <li data-icon="home"><a data-ajax="false" href="http://localhost/cakephp/">Principal</a></li>
-                                                <li data-icon="user"><a href="/cakephp/users/profile">Perfil</a></li>
-                                                <li><a id="selectcakem" href="/cakephp/cakebases/select/0/0/0">Crear</a></li>
-                        <li><a href="/cakephp/posts/upload">Compartir</a></li>
-                        <li><a href="/cakephp/posts/browse">Comentar</a></li>
+                        <li data-icon="home"><a data-ajax="false" href="http://localhost">Principal</a></li>
+                                                <li data-icon="user"><a href="users/profile">Perfil</a></li>
+                                                <li><a id="selectcakem" href="cakebases/select/0/0/0">Crear</a></li>
+                        <li><a href="posts/upload">Compartir</a></li>
+                        <li><a href="posts/browse">Comentar</a></li>
                     </ul>
                 </div>
             </div>
@@ -63,19 +63,19 @@
         <ul data-role="listview" data-inset="true">
             <li>
                 <a id="selectcake" href="cakebases/select/0/0/0" data-ajax="false">
-                <img src="/cakephp/img/recipe.jpg" class="ui-li-thumb">
+                <img src="img/recipe.jpg" class="ui-li-thumb">
                 <h2>Crea tus propias tartas</h2>
                 <p>Utilizando nuestro creador de recetas</p>
                 <p class="ui-li-aside">CREA</p>
             </a></li>
             <li><a href="posts/upload" data-ajax="false">
-                <img src="/cakephp/img/tchoco.jpg" class="ui-li-thumb">
+                <img src="img/tchoco.jpg" class="ui-li-thumb">
                 <h2>Sube tus creaciones</h2>
                 <p>Comparte con nosotros tus mejores tartas</p>
                 <p class="ui-li-aside">COMPARTE</p>
             </a></li>
             <li><a href="posts/browse" data-ajax="false">
-                <img src="/cakephp/img/comenta.jpg" class="ui-li-thumb">
+                <img src="img/comenta.jpg" class="ui-li-thumb">
                 <h2>Vuestras creaciones</h2>
                 <p>Comenta las creaciones de los demás</p>
                 <p class="ui-li-aside">COMENTA</p>
